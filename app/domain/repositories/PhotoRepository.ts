@@ -1,5 +1,6 @@
 import {ApiResType} from 'common/helper/APIHelper';
+import {Photos} from 'domain/entities/photo';
 
 export interface PhotoRepository {
-  getPhoto(): Promise<ApiResType<any>>;
+  getPhoto(): Promise<ApiResType<Photos>>;
 }

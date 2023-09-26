@@ -16,9 +16,11 @@ This sample demonstrates how one can
 |   ├── datasources
 |   ├── gateway
 |   ├── helper
+|   ├── models
 |   └── repositories
 ├── di (dependency injection)
 ├── domain 
+|   ├── entities
 |   ├── repositories
 |   └── usecases
 └── presentation

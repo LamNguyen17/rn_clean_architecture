@@ -20,26 +20,17 @@ export default class RestApiGateway {
 
   async request<D>(req: ApiReqType): Promise<ApiResType<D>> {
     try {
-      let snakeCasedParams;
-      let snakeCasedBody = req.body;
-      if (req.params) {
-        snakeCasedParams = req.params;
-      }
       const config = <AxiosRequestConfig>{
         method: req.method,
         url: req.path,
-        params: snakeCasedParams,
-        data: snakeCasedBody,
+        params: req.params,
+        data: req.body,
         headers: req.headers,
       };
-      console.log('request_config:', config);
       const res = await this.http.request(config);
-      console.log('request_success:', res);
       return this.parseData<D>(res);
     } catch (err: any) {
-      console.log('request_err:', err);
-      const errors =
-        this.handleError(err?.response?.data) || err?.response?.data?.message;
+      const errors = this.handleError(err?.response?.data);
       return {
         status: 'failed',
         errors,

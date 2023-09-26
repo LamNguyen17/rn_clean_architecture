@@ -5,10 +5,11 @@ import {exhaustMap} from 'rxjs/operators';
 
 import {container, TYPES} from 'di';
 import {GetPhotoUseCase} from 'domain/usecases/photo/GetPhotoUseCase';
+import {Hit} from 'domain/entities/photo';
 
 export function useBloc() {
   const [isLoading, setLoading] = useState<boolean>(false);
-  const [photos, setPhotos] = useState([]);
+  const [photos, setPhotos] = useState<Array<Hit>>([]);
   const getPhotoUseCase = container.get<GetPhotoUseCase>(TYPES.GetPhotoUseCase);
 
   useEffect(() => {

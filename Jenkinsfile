@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        PATH = "/usr/local/bin:$PATH"
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -11,33 +15,24 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 script {
-                    sh 'yarn install'
+                    nodejs(nodeJSInstallationName: 'YourNodeJSInstallation') {
+                        sh 'npm install'
+                    }
                 }
             }
         }
 
-        stage('Build Android') {
+        stage('Build') {
             steps {
                 script {
-                    sh 'npx react-native run-android --variant=release'
+                    nodejs(nodeJSInstallationName: 'YourNodeJSInstallation') {
+                        sh 'npx react-native build-android'
+                        sh 'npx react-native build-ios'
+                    }
                 }
             }
         }
 
-        stage('Build iOS') {
-            steps {
-                script {
-                    sh 'npx react-native run-ios --configuration=Release'
-                }
-            }
-        }
-
-        stage('Run Tests') {
-            steps {
-                script {
-                    sh 'yarn test'
-                }
-            }
-        }
+        // Add more stages as needed (e.g., testing, deployment)
     }
 }

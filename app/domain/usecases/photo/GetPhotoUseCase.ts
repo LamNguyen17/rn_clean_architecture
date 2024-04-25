@@ -12,7 +12,7 @@ export class GetPhotoUseCase implements BaseUseCase<ApiResType<Photos>> {
   @inject(TYPES.PhotoRepository)
   private readonly _repository!: PhotoRepository;
 
-  execute(): Promise<ApiResType<Photos>> {
-    return this._repository.getPhoto();
+  execute({page, query}: {page: number; query?: string}): Promise<ApiResType<Photos>> {
+    return this._repository.getPhoto(page, query);
   }
 }

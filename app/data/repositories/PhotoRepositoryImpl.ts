@@ -11,7 +11,7 @@ export class PhotoRepositoryImpl implements PhotoRepository {
   @inject(TYPES.PhotoRemoteDataSource)
   private readonly _dataSource!: PhotoRemoteDataSource;
 
-  async getPhoto(): Promise<ApiResType<Photos>> {
-    return this._dataSource.getPhoto();
+  async getPhoto(page: number, query?: string): Promise<ApiResType<Photos>> {
+    return this._dataSource.getPhoto(page, query);
   }
 }

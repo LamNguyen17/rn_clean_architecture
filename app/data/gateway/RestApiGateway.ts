@@ -28,6 +28,7 @@ export default class RestApiGateway {
         headers: req.headers,
       };
       const res = await this.http.request(config);
+      console.log('request:', res);
       return this.parseData<D>(res);
     } catch (err: any) {
       const errors = this.handleError(err?.response?.data);

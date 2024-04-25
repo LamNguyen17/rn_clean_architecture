@@ -8,12 +8,7 @@ export type NetError = {
 
 export type ApiSuccessType<D> = {
   status: 'success';
-  result: ApiResultType<D>;
-};
-
-type ApiSuccessListType<D> = {
-  status: 'success';
-  result: ApiResultListType<D>;
+  result?: ApiResultType<D>;
 };
 
 export type ApiFailureType = {
@@ -33,10 +28,6 @@ export type ApiResultType<D> = StandardApiResult & {
   data: D;
 };
 
-type ApiResultListType<D> = StandardApiResult & {
-  data: D;
-};
-
 export type ErrorType = {
   code: string;
   message: string;
@@ -51,5 +42,4 @@ export type ApiReqType = {
 };
 
 export type ApiShowResType<D> = ApiSuccessType<D> | ApiFailureType;
-export type ApiListResType<D> = ApiSuccessListType<D> | ApiFailureType;
-export type ApiResType<D> = ApiShowResType<D>; // | ApiListResType<D>;
+export type ApiResType<D> = ApiShowResType<D>;

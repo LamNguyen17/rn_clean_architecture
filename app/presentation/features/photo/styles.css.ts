@@ -20,6 +20,10 @@ export const ImagePreview = styled(FastImage)`
   border-radius: 50px;
 `;
 
+export const RecycleView = styled.FlatList`
+  margin-top: 16px;
+`;
+
 export const ViewColumn = styled.View.attrs((props: ViewStyle) => ({
   marginLeft: props.marginLeft || 0,
 }))`

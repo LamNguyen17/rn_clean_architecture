@@ -1,19 +1,22 @@
 import React from 'react';
-import {FlatList} from 'react-native';
 
 import {IProps} from 'presentation/features/photo/Photo';
 import {useBloc} from 'presentation/features/photo/Photo.hook';
 import {
   ImagePreview,
+  RecycleView,
   TextPrimary,
   ViewColumn,
   ViewContainer,
   ViewPhotoItem,
 } from 'presentation/features/photo/styles.css';
 import {Hit} from 'domain/entities/photo';
+import AppTextInput from 'presentation/components/textinput';
+import {RefreshControl} from 'react-native';
 
 const PhotoScreen: React.FC<IProps> = () => {
-  const {photos} = useBloc();
+  const {isLoading, photos, onLastValueChange, onEndReached, onRefresh} =
+    useBloc();
 
   const renderPhotoItem = ({item}: {item: Hit}) => {
     return (
@@ -31,8 +34,26 @@ const PhotoScreen: React.FC<IProps> = () => {
 
   return (
     <ViewContainer>
-      <FlatList data={photos} renderItem={renderPhotoItem} />
+      <AppTextInput
+        placeholder={'Tìm kiếm'}
+        isClear={true}
+        onLastValueChange={onLastValueChange}
+      />
+      <RecycleView
+        data={photos}
+        renderItem={renderPhotoItem}
+        removeClippedSubviews={true}
+        scrollEventThrottle={8}
+        initialNumToRender={6}
+        maxToRenderPerBatch={8}
+        onEndReached={onEndReached}
+        onEndReachedThreshold={0.4}
+        refreshControl={
+          <RefreshControl refreshing={isLoading} onRefresh={onRefresh} />
+        }
+      />
     </ViewContainer>
   );
 };
+
 export default React.memo(PhotoScreen);

@@ -1,11 +1,11 @@
-import {useEffect, useRef, useState} from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-import {of} from 'rxjs';
-import {exhaustMap} from 'rxjs/operators';
+import { of } from 'rxjs';
+import { exhaustMap } from 'rxjs/operators';
 
-import {container, TYPES} from 'di';
-import {GetPhotoUseCase} from 'domain/usecases/photo/GetPhotoUseCase';
-import {Hit} from 'domain/entities/photo';
+import { container, TYPES } from 'di';
+import { GetPhotoUseCase } from 'domain/usecases/photo/GetPhotoUseCase';
+import { Hit } from 'domain/entities/photo';
 
 export function useBloc() {
   const [isLoading, setLoading] = useState<boolean>(false);
@@ -27,7 +27,7 @@ export function useBloc() {
   const getPhotoPixabay = (page: number, query?: string) => {
     setLoading(true);
     const resultPhoto = of(
-      getPhotoUseCase.execute({page: page, query: query}),
+      getPhotoUseCase.execute({ page: page, query: query }),
     ).pipe(exhaustMap(value => value));
     resultPhoto.subscribe({
       next: (result: any) => {

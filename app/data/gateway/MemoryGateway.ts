@@ -8,7 +8,6 @@ export default class MemoryGateway {
       );
     }
     MemoryGateway._instance = this;
-
     this._data = {};
   }
 

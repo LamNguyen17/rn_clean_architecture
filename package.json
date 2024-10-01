@@ -12,6 +12,8 @@
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.19.3",
     "@react-native-community/netinfo": "9.4.1",
+    "@react-native-firebase/app": "21.0.0",
+    "@react-native-firebase/remote-config": "21.0.0",
     "axios": "0.27.2",
     "inversify": "6.0.1",
     "inversify-inject-decorators": "3.1.0",

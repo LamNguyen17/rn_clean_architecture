@@ -13,7 +13,7 @@ import styles, {
 const AppTextInput = (props: IProps) => {
   const {isClear, onLastValueChange} = props;
   const textChange$ = new BehaviorSubject('');
-  const textChangeRef = useRef<TextInput>(null);
+  const textChangeRef = useRef<TextInput|any>(null);
   let subscription = textChange$
     .pipe(
       debounceTime(400),

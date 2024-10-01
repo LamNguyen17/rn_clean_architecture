@@ -1,5 +1,8 @@
+import { RemoteConfigHelper } from 'common/helper/RemoteConfigHelper';
+
 export interface AppConfig {
   endpoint?: string;
+  apiKey?: string;
 }
 
 const Environment = {
@@ -14,6 +17,7 @@ const getConfig = (env: string): AppConfig => {
     default:
       return {
         endpoint: 'https://pixabay.com/api/',
+        apiKey: RemoteConfigHelper.getApiKey(),
       };
   }
 };

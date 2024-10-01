@@ -4,6 +4,7 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   textInput: {
     flex: 1,
+    color: 'black'
   },
 });
 
@@ -15,4 +16,5 @@ export const ViewTextInput = styled.View`
   border-color: darkgray;
   border-radius: 8px;
   padding-horizontal: 8px;
+  height: 44px;
 `;

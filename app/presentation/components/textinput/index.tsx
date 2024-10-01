@@ -52,6 +52,7 @@ const AppTextInput = (props: IProps) => {
       <ViewTextInput>
         <TextInput
           style={styles.textInput}
+          placeholderTextColor="black"
           ref={textChangeRef}
           placeholder={props.placeholder || 'Type here...'}
           onChangeText={onChangeText}
